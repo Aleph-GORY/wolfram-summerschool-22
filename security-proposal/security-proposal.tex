@@ -48,48 +48,63 @@ Authentication is a fundamental aspect of information security, it provides prot
 
 An authentication scheme is said to be secure if the if the chance that an impostor fools the system is so small that it does not represent a risk in the communication (comparable to channel noise).
 
-A common scheme is to add a \textit{digital signature} at the end of each message. This signature is generated with asymetric cryptography: The message is compressed to a fixed size with a cryptographic hash function (like SHA-256), this hash is then encrypted with the emisor's private key. In order to verify the message, the reciever compares the message's hash with the decripted signature if they differ the message is forged.
+A common scheme is to add a \textit{digital signature} at the end of each message. This signature is generated with asymetric cryptography: The message is compressed to a fixed size with a cryptographic hash function (like SHA-256), this hash is then encrypted with the emisor's private key. In order to verify the message, the receiver compares the message's hash with the decripted signature if they differ the message is forged.
 
 Without the private key the best the enemy can do is try different keys until the message is accepted. This takes $2^{n-1}$ tries on average ($n$ is the size of the key). HTTPS specifies a maximum key size of 2048 bits and RSA encryption. A brute ofrce atack would take $2^{2047} \approx 10^{616}$ tries, impossible task for current computers.
 
-But if an eficient solution to the factorization into prime factors is used to break the key (shors algorithm) % \cite{ariculoShore}
-Or if the impostor's computational power drastically increases, the digital signature is useless for authentication protection.
+But if an eficient solution to the factorization into prime factors is used to break the key (Shor's algorithm \cite{b1}) or if the impostor's computational power drastically increases, the digital signature is useless for authentication protection.
 
-With this in mind cite{SS} proposes a different kind of authentication scheme, one that remains secure regardless of the impostor's computational power. Three parts interact in the comunication system, \A\ an information source that wishes to communicate an element of the set of all possible source states $\s$, \B\ a reciever and \E\ the impostor.
+With this in mind \cite{b2} proposes a different kind of authentication schemes, called \textit{A-schemes}, that remains secure regardless of the impostor's computational power. Three parts interact in the comunication system, \A\ an information source that wishes to communicate an element of the set of all possible source states $\s$, \B\ a receiver and \E\ the impostor.
 
-\A\ will transform the source states into \textit{cyphered messages} (sequences compatible with the communication channel) by means of an \textit{encoding rule}. An encoding rule $r\in\r$ is a one-to-one mapping from $\s$ to $\m$. \B\ accepts a message $m$ as authentic if $m\in r[\s]$ and the original state is the pre-image $r^{-1}(m)$. This schema is represented in Figure~\ref{figModelo3Participantes}.
+\A\ will transform the source states into \textit{cyphered messages} (sequences compatible with the communication channel) by means of an \textit{encoding rule}. An encoding rule $r\in\r$ is a one-to-one mapping from $\s$ to $\m$. \B\ accepts a message $m$ as authentic if $m\in r[\s]$ and retireves the original state with the pre-image $r^{-1}(m)$. This schema is represented in Figure~\ref{figModelo3Participantes}.
 
 \begin{figure}
     \centering
     \resizebox{4.5px}{!}{
         \begin{tikzpicture}[trim left=(channel), trim right=(channel), auto, node distance=2cm,>=latex, scale=0.50]
             \node [smallblock](channel){};
-            \node [block, left of=channel, node distance=3cm, label=below:Codificador](encoder){$ \r $};
-            \node [block, left of=encoder, node distance=3cm, label=below:{\parbox{6em}{\centering Fuente de \\ Información}}](infosource){\A};
-            \node (decoder)[block, right of=channel, node distance=3cm, label=below:Decodificador]{};
-            \node (destination)[block, right of=decoder, node distance=3cm, label=below:Destino]{\B};
-            \node (enemy)[block, below of=channel, label=below:Enemigo]{\E};
+            \node [block, left of=channel, node distance=3cm, label=below:Encoder](encoder){$ \r $};
+            \node [block, left of=encoder, node distance=3cm, label=below:{\parbox{6em}{\centering Information\\source}}](infosource){\A};
+            \node (decoder)[block, right of=channel, node distance=3cm, label=below:Decoder]{};
+            \node (destination)[block, right of=decoder, node distance=3cm, label=below:Receiver]{\B};
+            \node (enemy)[block, below of=channel, label=below:Impostor]{\E};
 
-            \draw [->] (infosource) -- node[name=u]{\textit{estado}} (encoder);
-            \draw [->] (encoder) -- node {\parbox{2cm}{\centering \textit{mensaje codificado}}} (channel);
-            \draw [->] (channel) -- node {\parbox{2cm}{\centering \textit{mensaje recibido}}} (decoder);
-            \draw [->] (decoder) -- node [name=y]{\textit{estado}}(destination);
+            \draw [->] (infosource) -- node[name=u]{\parbox{1.5cm}{\centering \textit{source state}}} (encoder);
+            \draw [->] (encoder) -- node {\parbox{2cm}{\centering \textit{cyphered message}}} (channel);
+            \draw [->] (channel) -- node {\parbox{2cm}{\centering \textit{received message}}} (decoder);
+            \draw [->] (decoder) -- node [name=y]{\parbox{1.5cm}{\centering \textit{source state}}}(destination);
             \draw [->] (enemy) -- node[name=enemychannel]{} (channel);
-            \node [left of=enemychannel, node distance=7mm]{\parbox{2cm}{\centering \textit{mensaje falso}}};
+            \node [left of=enemychannel, node distance=7mm]{\parbox{2cm}{\centering \textit{forged message}}};
         \end{tikzpicture}
     }
-    \caption{Sistema de comunicación del modelo con tres participantes.}
+    \caption{A-scheme communication system.}
     \label{figModelo3Participantes}
 \end{figure}
 
-An instance of this schema is a 5-tuple $\aprottuple$, where $\ped{S}$ denotes a stochastic process over the set of all source states ie. the \textit{information source}.
+An A-schema is a 5-tuple $\aprottuple$, where $\ped{S}$ denotes a stochastic process over the set of all source states ie. the \textit{information source}, and $\pr$ is the probability distribution over the set of encoding rules. An \textit{A-code} is the 3-tuple $\acodetuple$ also refeered as the A-scheme's combinatorial structure.
 
-What we know of authentication codes. theoretical lower bound, the inconditional suplat probability.
+The impostor's best strategy is to listen to the first $t$ cyphered messages and with a cryptanalytical analysis, forge a message with the highest probability of success. The \textit{unconditional probability of success of order $t$} ($P_t$) is the expected percentage of successfully spoofed messages.
+
+$P_t$ is the mesurement of the security of an A-scheme, \cite{b3} demonstrates the theoretical lower bound for the unconditional probability of sucess, in terms of informatic entropy:
+\[
+    P_t \geq
+    e^{
+    \hc{R\;\;}{\;M^{t+1}}
+    - \hc{R\;\;}{\;M^{t}}
+    }
+\]
+
+Finally \cite{b4} characterizes the A-schemes that achieve the theoretical lower bound. Such schemes satisfy two conditions.
+\begin{itemize}
+    \item The information source $\ped{S}$ is message uniform.
+    \item The underlying A-code structure is a strong partially balanced $t$-design.
+\end{itemize}
 
 %
 % Objective
 %
-\section{Objective}
+\section{Proposal's objective}
+
 I want to statistically verify the theorem. What is the distribution.
 
 Also I want to calculate the values.
