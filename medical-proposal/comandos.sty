@@ -1,0 +1,66 @@
+\ProvidesPackage{comandos}
+
+\usepackage{pgf,tikz}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Simbolos
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\A}{$A$}
+\newcommand{\B}{$B$}
+\newcommand{\E}{$E$}
+\newcommand{\X}{\mathcal X}
+\newcommand{\Y}{\mathcal Y}
+
+\newcommand{\s}{\mathcal S}
+\renewcommand{\r}{\mathcal R}
+\newcommand{\m}{\mathcal M}
+\newcommand{\st}{\mathcal S^t}
+\newcommand{\rt}{\mathcal R^t}
+\newcommand{\mt}{\bar{\mathcal M}^t}
+\newcommand{\mi}{\bar{\mathcal M}^i}
+\newcommand{\mtt}{\bar{\mathcal M}^{t+1}}
+\newcommand{\mii}{\bar{\mathcal M}^{i+1}}
+\newcommand{\concatm}{m^t \ast m}
+\newcommand{\concatmi}{m^i \ast m}
+
+\newcommand{\pr}{P_\r}
+\newcommand{\aprot}{PA-3}
+\newcommand{\aprottuple}{\left( \s,\m,\r,\ped{S}, \pr \right)}
+\newcommand{\acode}{$A$-Código}
+\newcommand{\acodetuple}{\left( \s,\m,\r\right)}
+
+% Comandos
+\let\LN\ln
+\renewcommand{\ln}[1]{\LN \hspace{-0.15em} \left( #1 \right)}
+\newcommand{\lns}[1]{\LN \hspace{-0.15em} \left[ #1 \right]}
+\newcommand{\abs}[1]{\lvert #1 \lvert}
+\newcommand{\set}[1]{\lbrace #1 \rbrace}
+
+\newcommand{\sop}[1]{\mathbf{S}\left[#1\right]}
+\newcommand{\sopmrbig}{\mathbf{S}\left[M_{t+1}, R \lvert m^t\right]}
+\newcommand{\sopmr}{\mathbf{S}\left[ m^t\right]}
+
+\newcommand{\varal}[1]{#1:\P\rightarrow\mathcal{#1}}
+\newcommand{\ped}[1]{#1_\mathbb{N}}
+
+\newcommand{\p}[1]{p\hspace{-0.15em}\left(#1\right)}
+\newcommand{\pj}[2]{p\hspace{-0.15em}\left(#1,#2\right)}
+\newcommand{\pc}[2]{p\hspace{-0.15em}\left(#1 \mid #2\right)}
+
+\newcommand{\eq}[2]{#1 \hspace{-0.2em} = \hspace{-0.15em} #2}
+\newcommand{\peq}[2]{\p{\eq{#1}{#2}}}
+\newcommand{\pjeq}[4]{\pj{\eq{#1}{#2}}{\eq{#3}{#4}}}
+\newcommand{\pceq}[4]{\pc{\eq{#1}{#2}}{\eq{#3}{#4}}}
+
+\newcommand{\h}[1]{H(#1)}
+\newcommand{\hc}[2]{H(#1 \hspace{-0.2em} \mid \hspace{-0.15em} #2)}
+
+\newcommand{\rinv}[1]{r^{-1}\left( #1 \right)}
+\newcommand{\me}[1]{m_E\hspace{-0.3em}\left( #1 \right)}
+\newcommand{\pe}[2]{P\hspace{-0.1em}\left( #1 \lvert #2 \right)}
+%\newcommand{\concatm}[1][t]{m^{#1}\ast m}
+
+% Diagramas
+\tikzstyle{block}  =  [draw, rectangle, minimum height=1cm, minimum width=1cm]
+\tikzstyle{smallblock}  =  [draw, rectangle, minimum height=1em, minimum width=1em]
