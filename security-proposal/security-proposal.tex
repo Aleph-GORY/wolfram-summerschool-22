@@ -31,9 +31,7 @@ Authentication codes  \\
 \maketitle
 
 \begin{abstract}
-    This document is a model and instructions for \LaTeX.
-    This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes,
-    or Math in Paper Title or Abstract.
+    Current authentication schemes are based on asymmetric cryptography protocols like RSA, with the arrival of cuantum computing and fast factorization algorithms, security is endangered. A-schemes presents an alternative that remains secure regardless of computational power, but there are no tools to measure how secure they are. This proposal intends to create such tool.
 \end{abstract}
 
 % \begin{IEEEkeywords}
@@ -103,7 +101,7 @@ Finally \cite{b4} characterizes the A-schemes that achieve the theoretical lower
 %
 % Objective
 %
-\section{Proposal's objective}
+\section{Objective}
 The unconditional probability of success is the \textit{expected} percentage of successfully spoofed messages, however very little is known about the probability distribution and variance of this random process.
 
 On the other hand, the caracterization of perfect A-schemes imposes a restriction over the information source ($\ped{S}$ must be message uniform), that most information sources don't meet. Several unknown questions rises:
@@ -117,26 +115,23 @@ Insight is needed to solve both problems. My proposal's objective is to implemen
 The simulations will be done over distinct information sources and distinct A-codes, focusing on the two questions related to non message uniform information sources.
 
 %
-% Plan
+% Implementation
 %
-\section{Proposal's implementation}
-Before you begin to format your paper, first write and save the content as a
-separate text file. Complete all content and organizational editing before
-formatting.
-proofreading, spelling and grammar.
+\section{Implementation}
+Once the data points are genrated, using Wolfram's \textit{least square fitting} regression will describe the distribution and variance. Using Wolfram's descriptive statistics and plotting functionalities, I hope to find a relation on the difference to the theoretical lower bound, in the non perfect A-schemes, this will lead to a mathematical hypothesis.
 
-\subsection{Information source}\label{AA}
-Define abbreviations and acronyms the first time they are used in the text,
-even after they have been defined in the abstract. Abbreviations such as
-IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use
-abbreviations in the title or heads unless they are unavoidable.
+The problem lies in generating the data points ie. the simulation. This simulation must be as unbiased as possible, and optimal in order to generate a lot of data in short time. In order to achieve the simulation algorithm three things are needed.
 
-\subsection{Balanced t-designs}
+\subsection{Information source simulation}
+Shanon says information osurce are stochastich process over an alfabet, another project in Wolframs summer school did something in this regard \cite{b5}, a simple solution is to use a markov chain but maybe there's a lot of improvement.
+
+\subsection{A-codes and SPBDs}
+Wolfram has some neat functionalities for function definition, the only thing that remains is to generate SPBDs and variances of this codes, that can be done with the so called cartesian codes.
 
 \subsection{Strategy simulation}
+The startegy is straight forward as described in \cite{b6}, using kerkofs principle the inputs to the method will be an information source and a A-code.
+If time allows it I want to try a stochastich strategy.
 
-Be sure that the
-symbols in your equation have been defined before or immediately following
 
 % \begin{figure}[htbp]
 %     \centerline{\includegraphics{fig1.png}}
@@ -144,24 +139,16 @@ symbols in your equation have been defined before or immediately following
 %     \label{fig}
 % \end{figure}
 
-Figure Labels: Use 8 point Times New Roman for Figure labels. Use words
-rather than symbols or abbreviations when writing Figure axis labels to
-avoid confusing the reader. As an example, write the quantity
-``Magnetization'', or ``Magnetization, M'', not just ``M''. If including
-units in the label, present them within parentheses. Do not label axes only
-with units. In the example, write ``Magnetization (A/m)'' or ``Magnetization
-\{A[m(1)]\}'', not just ``A/m''. Do not label axes with a ratio of
-quantities and units. For example, write ``Temperature (K)'', not.
-
 %
 % Familiarity with the problem
 %
 \section{Familiarity with the problem}
-I have been working with the codes for one year for my dissertation, I know the theorem and the deduction.
+I have been working with A-shcemes and A-codes for over a year for my bachelor degree's thesis (all UNAM's math bachelors must present a thesis), the content of this document is a poof (and explanation) of the theoretical lower bound described above, and a poof (and explanation) of the characterization of perfect A-schemes in terms of SPBDs block designs.
 
 %
 % Bibliografía
 %
+\newpage
 \begin{thebibliography}{00}
     \bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
     \bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
