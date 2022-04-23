@@ -97,22 +97,29 @@ $P_t$ is the mesurement of the security of an A-scheme, \cite{b3} demonstrates t
 Finally \cite{b4} characterizes the A-schemes that achieve the theoretical lower bound. Such schemes satisfy two conditions.
 \begin{itemize}
     \item The information source $\ped{S}$ is message uniform.
-    \item The underlying A-code structure is a strong partially balanced $t$-design.
+    \item The underlying A-code structure is a strong partially balanced $t$-design (SPBD).
 \end{itemize}
 
 %
 % Objective
 %
 \section{Proposal's objective}
+The unconditional probability of success is the \textit{expected} percentage of successfully spoofed messages, however very little is known about the probability distribution and variance of this random process.
 
-I want to statistically verify the theorem. What is the distribution.
+On the other hand, the caracterization of perfect A-schemes imposes a restriction over the information source ($\ped{S}$ must be message uniform), that most information sources don't meet. Several unknown questions rises:
+\begin{itemize}
+    \item How much $P_t$ differs from its theoretical lower bound, given an A-schemes with non message uniform source?
+    \item Are SPBD the best A-code structure for such schemes?
+\end{itemize}
 
-Also I want to calculate the values.
+Insight is needed to solve both problems. My proposal's objective is to implement in Wolfram language, a pseudorandom simulation tool of the impostor's strategy, that will allow to generate data to statistically describe the spoof percentage, distirbution and variance.
+
+The simulations will be done over distinct information sources and distinct A-codes, focusing on the two questions related to non message uniform information sources.
 
 %
 % Plan
 %
-\section{Plan}
+\section{Proposal's implementation}
 Before you begin to format your paper, first write and save the content as a
 separate text file. Complete all content and organizational editing before
 formatting.
