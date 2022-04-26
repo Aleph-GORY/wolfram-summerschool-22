@@ -120,18 +120,19 @@ The simulations will be done over distinct information sources and distinct A-co
 \section{Implementation}
 Once the data points are genrated, using Wolfram's \textit{least square fitting} regression will describe the distribution and variance. Using Wolfram's descriptive statistics and plotting functionalities, I hope to find a relation on the difference to the theoretical lower bound, in the non perfect A-schemes, this will lead to a mathematical hypothesis.
 
-The problem lies in generating the data points ie. the simulation. This simulation must be as unbiased as possible, and optimal in order to generate a lot of data in short time. In order to achieve the simulation algorithm three things are needed.
+The problem lies in generating the data points ie. the simulation. This simulation must be as unbiased as possible, and optimal in order to generate a lot of data in short time. In order to achieve the simulation algorithm two things are needed.
 
 \subsection{Information source simulation}
-Shanon says information osurce are stochastich process over an alfabet, another project in Wolframs summer school did something in this regard \cite{b5}, a simple solution is to use a markov chain but maybe there's a lot of improvement.
+Shannon defines an information source as a family of random variables dispensing sequences words in time: a discrete stochastic process over the set of all source states.
+
+Last year, Mythreyi Namuduri's Wolfram summer school project \cite{b6}, showed this statistical nature of languaje, by listing the most common words for less commonly spoken languajes.
+
+Wolfram's WordList function together with a markov chain and a random number generator can be used to simulate an information source on a particular languaje.
 
 \subsection{A-codes and SPBDs}
-Wolfram has some neat functionalities for function definition, the only thing that remains is to generate SPBDs and variances of this codes, that can be done with the so called cartesian codes.
+A block design is a specific type of hypergraph, that can be defined in Wolfram languaje as a list of sets of vertices. On the other hand an A-code is a list of two sets and a family of one-to-one mappings from the first set to the second one, something that can be defined in Wolfram's languaje as a relation.
 
-\subsection{Strategy simulation}
-The startegy is straight forward as described in \cite{b6}, using kerkofs principle the inputs to the method will be an information source and a A-code.
-If time allows it I want to try a stochastich strategy.
-
+\cite{b4} characterization of perfect schemes gives an algorithm to transform a given SPBD into an A-code. This will be implemented as a function that takes an SPBD block design, the set of source states and the set of ecoding messages and returns an A-code.
 
 % \begin{figure}[htbp]
 %     \centerline{\includegraphics{fig1.png}}
@@ -139,16 +140,18 @@ If time allows it I want to try a stochastich strategy.
 %     \label{fig}
 % \end{figure}
 
+\newpage
 %
 % Familiarity with the problem
 %
 \section{Familiarity with the problem}
-I have been working with A-shcemes and A-codes for over a year for my bachelor degree's thesis (all UNAM's math bachelors must present a thesis), the content of this document is a poof (and explanation) of the theoretical lower bound described above, and a poof (and explanation) of the characterization of perfect A-schemes in terms of SPBDs block designs.
+I have been working with A-shcemes and A-codes for over a year for my bachelor degree's thesis (all UNAM's Math bachelors must present a thesis).
+
+The content of the thesis is a proof (and explanation) of the theoretical lower bound described above, and a poof (and explanation) of the characterization of perfect A-schemes in terms of SPBDs block designs.
 
 %
 % Bibliografía
 %
-\newpage
 \begin{thebibliography}{00}
     \bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
     \bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
