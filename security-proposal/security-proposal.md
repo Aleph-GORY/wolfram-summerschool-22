@@ -13,7 +13,7 @@ Current authentication schemes are based on asymmetric cryptography protocols li
 # Introduction
 Authentication is a fundamental aspect of information security, it provides protection against impersonations and false messages. A strategy implemented in a communication system to achieve such protection is called an *authentication scheme*.
 
-An authentication scheme is said to be secure if the if the chance that an impostor fools the system is so small that it doesn't represent a risk in the communication (comparable to channel noise).
+An authentication scheme is said to be secure if the chance that an impostor fools the system is so small that it doesn't represent a risk in the communication (comparable to channel noise).
 
 A common scheme is to add a *digital signature* at the end of each message. This signature is generated with asymmetric cryptography: The message is compressed to a fixed size with a cryptographic hash function (like SHA-256), this hash is then encrypted with the transmitter's private key. In order to verify the message, the receiver compares the message's hash with the decrypted signature if they differ the message is forged.
 
