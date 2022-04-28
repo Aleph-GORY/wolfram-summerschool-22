@@ -32,14 +32,14 @@ Tractography ML  \\
 \maketitle
 
 \begin{abstract}
-    Tractography is an MRI technique to estimate white matter structure. Thousands of streamlines are generated and need to be filtered for medical research and insight. The objective of this proposal is to migrate into Wolfram languaje a machine learning project based on supervised learning to segmentate tractograms into most common brain structures.
+    Tractography is an MRI technique to estimate white matter structure. Thousands of streamlines are generated and need to be filtered for medical research and insight. The objective of this proposal is to migrate into Wolfram language a machine learning project based on supervised learning to segment tractograms into most common brain structures.
 \end{abstract}
 
 %
 % Introduction
 %
 \section{Introduction}
-Tractography is a 3D computational modeling technique that statistically estimates white matter fiber paths on the human brain, using magnetic resonance imaging. The results are arrays of three dimensional trajectories called tractograms fig~\ref{tractogram}, that can be used to recreate the brain's connection structure in order to understand it's functionality and infer the presence of diseases.
+Tractography is a 3D computational modeling technique that statistically estimates white matter fiber paths on the human brain, using magnetic resonance imaging. The results are arrays of three dimensional trajectories called tractograms fig~\ref{tractogram}, that can be used to recreate the brain's connection structure in order to understand its functionality and infer the presence of diseases.
 
 \begin{figure}[htbp]
     \centerline{
@@ -49,50 +49,50 @@ Tractography is a 3D computational modeling technique that statistically estimat
     \label{tractogram}
 \end{figure}
 
-Due to resolution limitations, a tractogram of a brain cannot obtain individual axons, but clusters of axons. Nevertheless each tractogram contains thousands of such clusters, that cannot be processed and filtered for medical research without the help of computers.
+Due to resolution limitations, a tractogram of a brain cannot obtain individual axons, but clusters of axons. Nevertheless each tractogram contains thousands of clusters that cannot be processed and filtered for medical research without the help of computers.
 
-The task of determining which clusters are connected in the patient's brain is not a trivial task, since the fibers overlap and the complex structures of the brain's regions. Because of this, all tractography techniques make mistakes and generate noisy tractograms with lots of false positive connections.
+The task of determining which clusters are connected in the patient's brain is not a trivial task since the fibers overlap and the complex structures of the brain's regions. Because of this, all tractography techniques make mistakes and generate noisy tractograms with many false positive connections.
 
-Solutions to this problem, based on supervised and unsupervised ML algorithms, has been proposed such as random forest models, recurrent NN, convolutional NN and autoencoders. To date, none of these methods have shown conclusive performance or have been established as a main methodology to follow in the field of tractography.
+Solutions to this problem, based on supervised and unsupervised ML algorithms has been proposed such as random forest models, recurrent NN, convolutional NN and auto-encoders. To date, none of these methods have shown conclusive performance or have been established as a main methodology to follow in the field of tractography.
 
-Last summer I had the oportunity to attend the \textit{Summer in mathematical tools for data sacience}, given at mexican mathematical research center CIMAT. Over one month a team of six students, one instructor and one neurologist (which I was part of) worked on the implementation of four ML proposals in python, to extract of a given tractogram the main brain sturctures.
+Last summer I had the opportunity to attend the \textit{Summer in mathematical tools for data science}, given at Mexican mathematical research center CIMAT. Over one month a team of six students, one instructor and one neurologist (which I was part of) worked on the implementation of four ML proposals in python, to extract of a given tractogram the main brain structures.
 
-The training data was curated by Dr Luis Concha from the institute of neurobiology UNAM. From the four models only two were finished, and one correctly trained with satisfactory results. The project came to be named \textit{tractosplit} and is allocated in a public github repository \cite{b1}.
+The training data was curated by Dr. Luis Concha from the institute of neurology UNAM. From the four models only two were finished, and one correctly trained with satisfactory results. The project came to be named \textit{Tractosplit} and is allocated in a public github repository \cite{b1}.
 
 %
 % Objective
 %
 \section{Objective}
-My proposal is to migrate Tractosplit machine learning project from python into wolfram languaje, that implements current tractogram segmentation models and the two unfinished models into an instant API running in Wolfram cloud. Additionally implement a 3D interactive plotting of the segmentated results, inspired on Muhammad Ubadah's last year Wolfram summer school project \cite{b2}.
+My proposal is to migrate Tractosplit machine learning project from python into wolfram language. The new code will implement current tractogram segmentation models and the two unfinished models into an instant API running in Wolfram cloud. Additionally implement a 3D interactive plotting of the segmented results, inspired on Muhammad Ubadah's last year Wolfram summer school project \cite{b2}.
 
 %
 % Implementation
 %
 \section{Implementation}
-Three things are needed to sucessfully migrate tractosplit and implement 3d interactive plotting.
+Three things are needed to successfully migrate tractosplit and implement 3d interactive plotting.
 
 \subsection{Training}
 Current data for training is the previously mentioned curated data of 30 patients. Each tractogram streamline is assigned a label of the brain section it belongs to, making it ideal for supervised learning models.
 
-More data can be obtained online from the \textit{International Neuroimaging Data-sharing Initiative} \cite{b3} datasets. INDI datasets came from a variety of patients and are curated to study specific diseases like ABIDE: Autism Brain Imaging Data Exchange \cite{b4}.
+More data can be obtained online from the \textit{International Neuroimaging Data-sharing Initiative} \cite{b3} data sets. INDI data sets came from a variety of patients and are curated to study specific diseases like ABIDE: Autism Brain Imaging Data Exchange \cite{b4}.
 
 \subsection{Model definition}
-Tractosplit models are a colection of supervised learning architectures whose inputs are tractogram streamlines of size $k\in\{16, 32, 64\}$ ($k$ must be fixed) and return one of 23 labels corresponding to the standard spaces used by XTRACT \cite{b4} tractography tool. Current working architectures are
+Tractosplit models are a collection of supervised learning architectures whose inputs are tractogram streamlines of size $k\in\{16, 32, 64\}$ ($k$ must be fixed) and return one of 23 labels corresponding to the standard spaces used by XTRACT \cite{b4} tractography tool. Current working architectures are
 
 \begin{itemize}
-    \item Long short term memory neural network. This networks was proposed by team's instructure Phd. Jean-Bernard Hayet, due to it's proficency on pedestrian trayectory prediction.
+    \item Long short term memory neural network. This network was proposed by team's instructure Phd. Jean-Bernard Hayet, due to its proficiency on pedestrian trayectory prediction.
     \item Autoencoder.
 \end{itemize}
 The unfinished models are based on
 \begin{itemize}
     \item Random forest. 3D random forest can be represented as a box segmented by prismatic sections (3-cells), calculus theorems assert that all brain sections can be approximated with such prisms.
-    \item Convolutional neural network. \cite{b5} propose a CNN based clasifier that successfully identifies 99\% of fibers on avergae.
+    \item Convolutional neural network. \cite{b5} propose a CNN based clasifier that successfully identifies 99\% of fibers on average.
 \end{itemize}
 
 \subsection{3D interactive plotting}
 As mentioned above, segmentation models outputs are a list of several tractogram files, composed of a list of lists size $k\in \{16, 32, 64\}$ of 3D points in brain space.
 
-Each tractogram $k$-list will be plotted as a trayectory in 3d space, and assigned a color depending on the brain section the it belongs. Interactivity controls will allow the user to move the 3D camera around the brain and focus on specific brain section.
+Each tractogram $k$-list will be plotted as a trajectory in 3d space, and assigned a color depending on the brain section it belongs. Interactivity controls will allow the user to move the 3D camera around the brain and focus on specific brain section.
 
 \newpage
 %
