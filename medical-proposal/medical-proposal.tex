@@ -32,7 +32,7 @@ Tractography ML  \\
 \maketitle
 
 \begin{abstract}
-    Current authentication schemes are based on asymmetric cryptography protocols like RSA, with the arrival of cuantum computing and fast factorization algorithms, security is endangered. A-schemes presents an alternative that remains secure regardless of computational power, but there are no tools to measure how secure they are. This proposal intends to create such tool.
+    Tractography is an MRI technique to estimate white matter structure. Thousands of streamlines are generated and need to be filtered for medical research and insight. The objective of this proposal is to migrate into Wolfram languaje a machine learning project based on supervised learning to segmentate tractograms into most common brain structures.
 \end{abstract}
 
 %
@@ -77,7 +77,8 @@ Current data for training is the previously mentioned curated data of 30 patient
 More data can be obtained online from the \textit{International Neuroimaging Data-sharing Initiative} \cite{b3} datasets. INDI datasets came from a variety of patients and are curated to study specific diseases like ABIDE: Autism Brain Imaging Data Exchange \cite{b4}.
 
 \subsection{Model definition}
-Tractosplit models are a colection of supervised learning architectures whose inputs are tractogram streamlines of size $k\in\{16, 32, 64\}$ ($k$ must be fixed) and return one of 23 labels corresponding to the standard spaces used by XTRACT \cite{b1} tractography tool. Current working architectures are
+Tractosplit models are a colection of supervised learning architectures whose inputs are tractogram streamlines of size $k\in\{16, 32, 64\}$ ($k$ must be fixed) and return one of 23 labels corresponding to the standard spaces used by XTRACT \cite{b4} tractography tool. Current working architectures are
+
 \begin{itemize}
     \item Long short term memory neural network. This networks was proposed by team's instructure Phd. Jean-Bernard Hayet, due to it's proficency on pedestrian trayectory prediction.
     \item Autoencoder.
@@ -98,14 +99,19 @@ Each tractogram $k$-list will be plotted as a trayectory in 3d space, and assign
 % Bibliografía
 %
 \begin{thebibliography}{00}
-    \bibitem{b1}
-    {https://github.com/Aleph-GORY/tractosplit}{}.
-    \bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-    \bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-    \bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-    \bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-    \bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-    \bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+    \bibitem{b1} CIMAT’s 2021 Summer in mathematical tools for data science, Brain connectivity team. (2021, June 24). GitHub - Aleph-GORY/tractosplit: Automatic tractography classifier. GitHub. https://github.com/Aleph-GORY/tractosplit
+
+    \bibitem{b2} Ubadah Tanveer, M. (2021, June 20). [WSS21] Biomechanical model of joint movements in human body - Online Technical Discussion Groups—Wolfram Community. Wolfram Community. https://community.wolfram.com/groups/-/m/t/2312437
+
+    \bibitem{b3} International Neuroimaging Data-sharing Initiative. (n.d.). International Neuroimaging Data-sharing Initiative. https://fcon\_1000.projects.nitrc.org/
+
+    \bibitem{b4} FSL. (n.d.). XTRACT - FslWiki. \\https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/XTRACT
+
+    \bibitem{b5} Zhang, F., Cetin Karayumak, S., Hoffmann, N., Rathi, Y., Golby, A. J., \& O’Donnell, L. J. (2020). Deep white matter analysis (DeepWMA): Fast and consistent tractography segmentation. Medical Image Analysis, 65, 101761. https://doi.org/10.1016/j.media.2020.101761
+
+    \bibitem{b6} Hagmann, P., Kurant, M., Gigandet, X., Thiran, P., Wedeen, V. J., Meuli, R., \& Thiran, J. P. (2007). Mapping Human Whole-Brain Structural Networks with Diffusion MRI. PLoS ONE, 2(7), e597. https://doi.org/10.1371/journal.pone.0000597
+
+    \bibitem{b7} Jones, D. K., PhD. (2011). Diffusion MRI. OUP USA.
 \end{thebibliography}
 
 \end{document}
